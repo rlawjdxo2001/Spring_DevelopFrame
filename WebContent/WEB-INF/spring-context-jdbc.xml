@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- データベースの接続情報及びJPA情報のプロパティファイル -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!-- entityManagerFactoryの設定 -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <!-- 接続情報の設定→下記の【bean id="dataSource"】を参照 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- Hibernateのパラメータの設定→【bean id="jpaVendorAdapter"】を参照 -->
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+        <!-- persistence.xmlの参照先を設定 -->
+        <property name="persistenceXmlLocation" value="classpath:persistence.xml"></property>
+    </bean>
+
+    <!-- データベース接続情報 -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+        <property name="driverClassName" value="${spring.datasource.driverClassName}"/><!-- JDBCクラス名 -->
+        <property name="url" value="${spring.datasource.url}" /><!-- 接続URL -->
+        <property name="username" value="${spring.datasource.username}"/><!-- 接続ID -->
+        <property name="password" value="${spring.datasource.password}"/><!-- 接続パスワード -->
+    </bean>
+
+    <!-- トランザクション設定 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- Hibernateのパラメータの設定→詳細内容は【persistence.xml】を参照 -->
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+
+    <!-- jpaのrepositoriesで扱うペースパッケージを設定 -->
+    <jpa:repositories base-package="com.raisin.repository"></jpa:repositories>
+
+</beans>

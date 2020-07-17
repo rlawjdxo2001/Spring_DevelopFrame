@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    ">
+
+  <!-- mvc設定 -->
+  <import resource="spring-context-mvc.xml"/>
+  <!-- context設定 -->
+  <import resource="spring-context-context.xml"/>
+  <!-- bean設定 -->
+  <import resource="spring-context-bean.xml"/>
+  <!-- jdbc設定 -->
+  <import resource="spring-context-jdbc.xml"/>
+  <!-- メッセージ設定 -->
+  <import resource="spring-context-message.xml"/>
+
+</beans>

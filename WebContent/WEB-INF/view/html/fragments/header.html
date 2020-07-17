@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <header th:fragment="headerFragment">
+  <div id="forPC" class="row m-0 d-none d-lg-block bg-secondary" style="height:10vh">
+    <div class="row text-right text-light" th:if="${userId} == null">
+    </div>
+
+    <div class="text-right text-light" th:if="${session.userInfo != null}">
+      <br/>
+      <h3 th:text="${session.userInfo.username}+' 様'">ユーザーID</h3>
+      <a  href="./logout">ログアウト</a>
+      <br/>
+    </div>
+  </div>
+  <div id="forPhone" class="row m-0 d-block d-lg-none bg-secondary" style="height:15vh">
+    <div class="row text-right text-light" th:if="${userId} == null">
+    </div>
+
+    <div class="row text-right text-light" th:if="${userId} != null">
+      <br/>
+      <h3 th:text="${userId}">ユーザーID</h3>
+      <br/>
+    </div>
+  </div>
+
+  </header>
+</html>
+

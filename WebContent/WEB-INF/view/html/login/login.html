@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/defaultLayout">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ログイン画面</title>
+ </head>
+  <div layout:fragment="content" style="vertical-align: middle;">
+
+    <script type="text/javascript">
+	  function onclickRegist(clickObj) {
+	    $(clickObj).parents("form").attr("action", "./register")
+	    $(clickObj).parents("form").submit();
+	  }
+    </script>
+
+    <div id="forPC" class="contain d-none d-lg-block">
+	<form class="form-signin" method="post" action="./chkUserInfo">
+  	  <div class="text-center">
+	    <div class="col-4 bg-primary text-white" style="margin:auto;">
+	      <h1>Login</h1>
+	    </div>
+      </div>
+
+      <!-- 入力欄の追加 start -->
+      <div class="text-center">
+	      <input type="text" name="userid" id="userId" class="form-control col-4" placeholder="UserID" th:value="${userid}" style="margin:auto; margin-top: 10px;" />
+      </div>
+      <div class="text-center">
+	      <input type="password" name="password" id="userPassword" class="form-control col-4" placeholder="Password" style="margin:auto; margin-top: 10px;" />
+      </div>
+      <div class="text-center"  th:if="${errMsg != null}">
+	      <div class="p-1 col-4 bg-danger text-white" th:text="${errMsg}" style="margin:auto; margin-top: 10px;">エラーメッセージ</div>
+      </div>
+
+	  <div class="text-center">
+	    <div class="col-12" style="margin: auto;">
+	      <button class="btn btn-lg btn-primary col-2"
+	              style="margin-top: 10px;" onclick="onclickRegist(this)">会員加入</button>
+	      <button class="btn btn-lg btn-primary col-2"
+	              style="margin-top: 10px;" type="submit">ログイン</button>
+	    </div>
+	  </div>
+<!--       <div class="text-center"> -->
+<!-- 	    <button class="btn btn-lg btn-primary col-4" style="margin:auto; margin-top: 10px; " type="submit">ログイン</button> -->
+<!--       </div> -->
+<!--       <div class="text-center"> -->
+<!-- 	    <button class="btn btn-lg btn-primary col-4" style="margin:auto; margin-top: 10px; " onclick="onclickRegist(this)">会員加入</button> -->
+<!--       </div> -->
+      <!-- 入力欄の追加 end   -->
+
+    </form>
+    </div>
+
+    <div id="forPhone" class="d-block d-lg-none">
+	<form class="form-signin" method="post" action="./chkUserInfo">
+  	  <div class="text-center">
+	    <div class="col-12 bg-primary text-white " style="margin:auto; height: 120px; padding-top: 30px;">
+	      <h1>Login</h1>
+	    </div>
+      </div>
+
+      <!-- 入力欄の追加 start -->
+      <div class="text-center">
+	      <input type="text" name="userid" id="userId" class="form-control col-12" placeholder=" UserID" style="margin:auto; margin-top: 10px; padding-left:20px; height: 70px;" />
+      </div>
+      <div class="text-center">
+	      <input type="password" name="password" id="userPassword" class="form-control col-12" placeholder=" Password" style="margin:auto; margin-top: 10px; padding-left:20px; height: 70px;" />
+      </div>
+      <div class="text-center"  th:if="${errMsg != null}">
+	      <div class="p-1 col-12 bg-danger text-white" th:text="${errMsg}" style="margin:auto; margin-top: 10px;">エラーメッセージ</div>
+      </div>
+      <div class="text-center">
+	    <button class="btn btn-lg btn-primary col-12" style="margin:auto; margin-top: 10px; height: 70px;" type="submit">ログイン</button>
+      </div>
+      <div class="text-center">
+	    <button class="btn btn-lg btn-primary col-12" style="margin:auto; margin-top: 10px; height: 70px;" onclick="onclickRegist(this)">会員加入</button>
+      </div>
+      <!-- 入力欄の追加 end   -->
+    </form>
+    </div>
+  </div>
+</html>
+

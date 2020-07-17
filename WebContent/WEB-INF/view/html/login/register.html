@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/defaultLayout">
+<head>
+<meta charset="UTF-8" />
+<title>会員加入</title>
+</head>
+<div layout:fragment="content" style="vertical-align: middle;">
+	<script type="text/javascript">
+		function onclickCancle(clickObj) {
+			$(clickObj).parents("form").attr("action", "./login")
+			$(clickObj).parents("form").submit();
+		}
+		function onclickRegist(clickObj) {
+			$(clickObj).parents("form").attr("action", "./registeUser")
+			$(clickObj).parents("form").submit();
+		}
+		$(function(){
+			if ($(".processFlg").val() == "1") {
+				$(".modalBtn").click();
+			}
+
+		})
+	</script>
+
+	<div id="forPC" class="contain d-none d-lg-block">
+		<form class="form-signin" method="post" action="./chkUserInfo">
+			<div class="text-center">
+				<div class="col-4 bg-primary text-white" style="margin: auto;">
+					<h1>Register</h1>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<input type="text" name="userid" id="userId"
+					class="form-control col-4" placeholder="UserID"
+					th:value="${userid}" style="margin: auto; margin-top: 10px;" />
+			</div>
+			<div class="text-center" th:if="${userIdErrMsg != null}">
+				<div class="p-1 col-4 bg-danger text-white"
+					th:text="${userIdErrMsg}" style="margin: auto; margin-top: 10px;">エラーメッセージ</div>
+			</div>
+			<div class="text-center">
+				<input type="text" name="username" id="username"
+					class="form-control col-4" placeholder="User Name"
+					th:value="${username}" style="margin: auto; margin-top: 10px;" />
+			</div>
+			<div class="text-center" th:if="${usernameErrMsg != null}">
+				<div class="p-1 col-4 bg-danger text-white"
+					th:text="${usernameErrMsg}" style="margin: auto; margin-top: 10px;">エラーメッセージ</div>
+			</div>
+			<div class="text-center">
+				<input type="password" name="password" id="password"
+					class="form-control col-4" placeholder="Password"
+					th:value="${password}" style="margin: auto; margin-top: 10px;" />
+			</div>
+			<div class="text-center" th:if="${passwordErrMsg != null}">
+				<div class="p-1 col-4 bg-danger text-white"
+					th:text="${passwordErrMsg}" style="margin: auto; margin-top: 10px;">エラーメッセージ</div>
+			</div>
+			<div class="text-center">
+				<input type="password" name="passwordChk" id="passwordChk"
+					class="form-control col-4" placeholder="Password Check"
+					th:value="${passwordChk}" style="margin: auto; margin-top: 10px;" />
+			</div>
+			<div class="text-center" th:if="${passwordChkErrMsg != null}">
+				<div class="p-1 col-4 bg-danger text-white"
+					th:text="${passwordChkErrMsg}"
+					style="margin: auto; margin-top: 10px;">エラーメッセージ</div>
+			</div>
+
+			<div class="text-center">
+				<div class="col-12" style="margin: auto;">
+					<button class="btn btn-lg btn-primary col-2 registBtn"
+						style="margin-top: 10px;" onclick="onclickRegist(this)">加入</button>
+					<button class="btn btn-lg btn-primary col-2 cancleBtn"
+						style="margin-top: 10px;" onclick="onclickCancle(this)">キャンセル</button>
+				</div>
+				<input type="hidden" class="processFlg" name="processFlg" th:value="${processFlg}" value="0">
+			</div>
+
+			<div class="text-center d-none">
+				<div class="col-12" style="margin: auto;">
+					<button type="button" class="btn btn-primary modalBtn" data-toggle="modal"
+						data-target="#complateUserPcModal" data-backdrop="static"
+						data-keyboard="false">Launch demo modal</button>
+				</div>
+			</div>
+
+
+			<!--     完了メッセージモーダル -->
+			<!-- Modal -->
+			<div class="modal fade" id="complateUserPcModal" tabindex="-1"
+				role="dialog" aria-labelledby="complateUserPcModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="complateUserPcModalLabel">会員加入</h5>
+						</div>
+						<div class="modal-body">
+							会員加入できました。<br /> OKボタンを押すとログイン画面に遷移されます。
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal" onclick="onclickCancle(this)">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="forPhone" class="d-block d-lg-none">
+		<form class="form-signin" method="post" action="./chkUserInfo">
+
+
+		</form>
+	</div>
+
+</div>
+</html>
+

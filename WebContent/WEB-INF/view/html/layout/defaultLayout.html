@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ <head th:replace="fragments/config :: configFragment">
+</head>
+ <header th:replace="fragments/header :: headerFragment" >
+</header>
+
+<div class="d-none d-lg-table" style="height:83vh; width: 100%;">
+  <div layout:fragment="content" style=" width: 100%;" class="d-table-cell">
+  </div>
+</div>
+
+
+<!-- <div class="d-table d-lg-none " style="height:68vh; width: 100%;"> -->
+<!--   <div layout:fragment="content" style=" width: 100%;" class="d-table-cell"></div> -->
+<!-- </div> -->
+
+
+ <footer th:replace="fragments/footer :: footerFragment" >
+</footer>
+ </html>
+
+

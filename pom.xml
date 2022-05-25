@@ -11,7 +11,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
 
     <!-- spingのバージョンをプロパティとして設定 start -->
-    <spring.version>5.2.6.RELEASE</spring.version>
+    <spring.version>5.2.22.RELEASE</spring.version>
     <!-- spingのバージョンをプロパティとして設定 end   -->
     <!-- タイムリーフのバージョンをプロパティとして設定 start -->
     <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
